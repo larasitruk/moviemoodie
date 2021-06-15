@@ -82,6 +82,7 @@ function retrieveMovie(movieUrl) {
   <div>${movie.vote_average}</div>
   <div>${movie.release_date}</div>
   <img class="image" src="${imageUrl}"/>
+  <div class="movie-overview">${movie.overview}</div>
   `;
     })
     .catch((error) => {
