@@ -36,7 +36,7 @@ function generateUrl(criteria) {
     api_key: "3a2c3a6a4ed554ae8f475e65fefbe05a",
     language: "en-US",
     // add more sorting categories in random mix.
-    sort_by: getRandom(["popularity.desc", "vote_average.desc"]),
+    sort_by: getRandom(["popularity.desc", "vote_average.desc", "primary_release_date.asc", "vote_count.desc"]),
     page: "1",
     "vote_count.gte": "100",
   };
@@ -48,10 +48,10 @@ function generateUrl(criteria) {
     newCriteria["vote_average.gte"] = criteria.score;
   }
   if (criteria.yearstart !== "") {
-    newCriteria["release_date.gte"] = criteria.yearstart;
+    newCriteria["release_date.gte"] = criteria.yearstart + "-12-31";
   }
   if (criteria.yearend !== "") {
-    newCriteria["release_date.lte"] = criteria.yearend;
+    newCriteria["release_date.lte"] = criteria.yearend + "-01-01";
   }
 
   console.log(newCriteria);
@@ -69,7 +69,11 @@ function retrieveMovie(movieUrl) {
       console.log(movie);
       // if not movie/ no result, use query selector to add an html error for the user. 
       // and then return, so rest of code does not get executed.
-      
+
+      if (movie === undefined){
+        return document.querySelector("#movie-display").innerHTML = 
+       `<div id="no-results-style">No results found for this search</div>`
+      }
       const imageUrl = `https://image.tmdb.org/t/p/w200/${movie.poster_path}`;
 
       document.querySelector("#movie-display").innerHTML = `
