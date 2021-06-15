@@ -6,52 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Moviemoodie - find the movie that fits your mood</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Cabin+Sketch:wght@700&family=Fredericka+the+Great&display=swap" rel="stylesheet">
   </head>
   <body>
     <script type="module" src="/main.js"></script>
     <div class="flex justify-center">
       <div class="flex-wrap">
         <h1>what movie am I in the mood for?</h1>
-      <form id="movie-filter" action=" " method="GET">
-            <label for="genre" id="genre form-elem" name="movie_genre">genre:</label>
-              <select name="genre" id="genre">
-                <!-- add all genres from tmdb https://api.themoviedb.org/3/genre/movie/list?api_key=3a2c3a6a4ed554ae8f475e65fefbe05a&language=en-US-->
-                <option value="">all</option>
-                <option value="28">Action</option>
-                <option value="12">Adventure</option>
-                <option value="16">Animation</option>
-                <option value="35">Comedy</option>
-                <option value="80">Crime</option>
-                <option value="18">Drama</option>
-                <option value="99">Documentary</option>
-                <option value="10751">Family</option>
-                <option value="14">Fantasy</option>
-                <option value="36">History</option>
-                <option value="27">Horror</option>
-                <option value="10402">Music</option>
-                <option value="9648">Mystery</option>
-                <option value="10749">Romance</option>
-                <option value="878">Science Fiction</option>
-                <option value="53">Thriller</option>
-                <option value="37">Western</option>
-                
+        <form id="movie-filter" action=" " method="GET">
+          <div>
+            <label for="genre" class="form-elem" name="genre">genre</label>
+            <select name="genre" id="genre">
+              <!-- add all genres from tmdb https://api.themoviedb.org/3/genre/movie/list?api_key=3a2c3a6a4ed554ae8f475e65fefbe05a&language=en-US-->
+              <option value="">all</option>
+              <option value="28">Action</option>
+              <option value="12">Adventure</option>
+              <option value="16">Animation</option>
+              <option value="35">Comedy</option>
+              <option value="80">Crime</option>
+              <option value="18">Drama</option>
+              <option value="99">Documentary</option>
+              <option value="10751">Family</option>
+              <option value="14">Fantasy</option>
+              <option value="36">History</option>
+              <option value="27">Horror</option>
+              <option value="10402">Music</option>
+              <option value="9648">Mystery</option>
+              <option value="10749">Romance</option>
+              <option value="878">Science Fiction</option>
+              <option value="53">Thriller</option>
+              <option value="37">Western</option>
             </select>
+          </div>
+          <div>
             <!-- // make select for score-->
-            <label for="Score">score:</label>
-            <input type="number" class="form-elem" name="score" min="0" max="10" placeholder="all">
-            <label for="year">year start</label>
-            <input type="number" class="form-elem" name="yearstart" min="1910" max="2021">
-            <label for="year">year end</label>
-            <input type="number" class="form-elem" name="yearend" min="1910" max="2021" placeholder="all">
-      </form>
+            <label for="score" class="form-elem" name="score">score</label>
+            <select name="score">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+          </div>
+          <div>
+            <label for="year" class="form-elem">year start</label>
+            <input
+              type="number"
+              name="yearstart"
+              min="1910"
+              max="2021"
+              placeholder="all"
+              class="form-elem"
+            />
+          </div>
+          <div class="form-elem">
+            <label for="year" class="form-elem">year end</label>
+            <input
+              type="number"
+              name="yearend"
+              min="1910"
+              max="2021"
+              placeholder="all"
+              
+            />
+          </div>
+        </form>
         <button id="suggest-button" type="button">recommend movie</button>
       </div>
     </div>
-    <br>
-    <div class="flex justify-center" >
-      <div id="movie-display">
-      </div>
+    <br />
+    <div class="flex justify-center">
+      <div id="movie-display"></div>
     </div>
-    
   </body>
 </html>

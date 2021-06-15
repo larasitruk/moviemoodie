@@ -48,10 +48,10 @@ function generateUrl(criteria) {
     newCriteria["vote_average.gte"] = criteria.score;
   }
   if (criteria.yearstart !== "") {
-    newCriteria["release_date.gte"] = criteria.yearstart + "-12-31";
+    newCriteria["primary_release_date.gte"] = criteria.yearstart + "-12-31";
   }
   if (criteria.yearend !== "") {
-    newCriteria["release_date.lte"] = criteria.yearend + "-01-01";
+    newCriteria["primary_release_date.lte"] = criteria.yearend + "-01-01";
   }
 
   console.log(newCriteria);
@@ -74,13 +74,14 @@ function retrieveMovie(movieUrl) {
         return document.querySelector("#movie-display").innerHTML = 
        `<div id="no-results-style">No results found for this search</div>`
       }
+
       const imageUrl = `https://image.tmdb.org/t/p/w200/${movie.poster_path}`;
 
       document.querySelector("#movie-display").innerHTML = `
   <div>${movie.title}</div>
   <div>${movie.vote_average}</div>
   <div>${movie.release_date}</div>
-  <img src="${imageUrl}"/>
+  <img class="image" src="${imageUrl}"/>
   `;
     })
     .catch((error) => {
