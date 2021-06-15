@@ -13,10 +13,6 @@ h1 {
   font-size: 40px;
 }
 
-#form-elem {
-  margin: 30px;
-}
-
 #image {
   width: auto;
   max-height: 500px;
@@ -31,7 +27,7 @@ h1 {
   text-align: center;
 }
 
-.button {
+#suggest-button {
   color: white;
   background-color: rgb(23, 165, 134);
   font-size: 20px;
@@ -48,4 +44,8 @@ h1 {
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.form-elem {
+  margin: 30px;
 }
