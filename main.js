@@ -36,15 +36,26 @@ function generateUrl(criteria) {
     api_key: "3a2c3a6a4ed554ae8f475e65fefbe05a",
     language: "en-US",
     // add more sorting categories in random mix.
-    sort_by: getRandom(["popularity.desc", "vote_average.desc", "primary_release_date.asc", "vote_count.desc"]),
-    page: "1",
+    sort_by: getRandom([
+      "popularity.desc",
+      "popularity.asc",
+      "vote_average.desc",
+      "vote_average.asc",
+      "primary_release_date.asc",
+      "vote_count.desc",
+    ]),
+    page: getRandom(["1", "2"]),
     "vote_count.gte": "100",
+    "vote_average.gte": 7,
   };
 
   if (criteria.genre !== "") {
     newCriteria.with_genres = criteria.genre;
+    if (criteria.genre !== "16") {
+      newCriteria.without_genres = 16;
+    }
   }
-  if (criteria.score !== "") {
+  if (criteria.score) {
     newCriteria["vote_average.gte"] = criteria.score;
   }
   if (criteria.yearstart !== "") {
@@ -67,12 +78,13 @@ function retrieveMovie(movieUrl) {
     .then((jsonData) => {
       let movie = getRandom(jsonData.results);
       console.log(movie);
-      // if not movie/ no result, use query selector to add an html error for the user. 
+      // if not movie/ no result, use query selector to add an html error for the user.
       // and then return, so rest of code does not get executed.
 
-      if (movie === undefined){
-        return document.querySelector("#movie-display").innerHTML = 
-       `<div id="no-results-style">No results found for this search</div>`
+      if (movie === undefined) {
+        return (document.querySelector(
+          "#movie-display"
+        ).innerHTML = `<div id="no-results-style">No results found for this search</div>`);
       }
 
       const imageUrl = `https://image.tmdb.org/t/p/w200/${movie.poster_path}`;
